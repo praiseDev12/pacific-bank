@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+	content: [
+		'./src/**/*.{js,ts,jsx,tsx}',
+		'./pages/**/*.{js,ts,jsx,tsx}',
+		'./components/**/*.{js,ts,jsx,tsx}',
+	],
 	prefix: '',
 	theme: {
 		container: {
@@ -12,8 +16,6 @@ export default {
 		},
 		extend: {
 			colors: {
-				white: 'var(--white)',
-				black: 'var(--black)',
 				grey: '#9999',
 				'dark-grey': 'var(--dark-grey)',
 				red: 'var(--red)',

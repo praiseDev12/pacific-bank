@@ -1,12 +1,6 @@
 @config '../tailwind.config.js';
 @import 'tailwindcss';
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
 	display: none;
@@ -42,7 +36,47 @@
 	background: #7878a3;
 }
 
-@layer components {
+@layer utilities {
+	.text-10 {
+		@apply text-[10px] leading-[14px];
+	}
+
+	.text-12 {
+		@apply text-[12px] leading-[16px];
+	}
+
+	.text-14 {
+		@apply text-[14px] leading-[20px];
+	}
+
+	.text-16 {
+		@apply text-[16px] leading-[24px];
+	}
+
+	.text-18 {
+		@apply text-[18px] leading-[22px];
+	}
+
+	.text-20 {
+		@apply text-[20px] leading-[24px];
+	}
+
+	.text-24 {
+		@apply text-[24px] leading-[30px];
+	}
+
+	.text-26 {
+		@apply text-[26px] leading-[32px];
+	}
+
+	.text-30 {
+		@apply text-[30px] leading-[38px];
+	}
+
+	.text-36 {
+		@apply text-[36px] leading-[44px];
+	}
+
 	.input-class {
 		@apply text-[16px] leading-[24px] placeholder:text-[16px] rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500;
 	}
@@ -65,7 +99,7 @@
 	}
 
 	.home-content {
-		@apply flex w-full flex-1 flex-col gap-8 !px-5 sm:!px-8 !py-7 lg:!py-12 xl:max-h-screen xl:overflow-y-scroll;
+		@apply flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;
 	}
 
 	.home-header {
@@ -73,7 +107,7 @@
 	}
 
 	.total-balance {
-		@apply flex w-full items-center !gap-4 rounded-xl border border-gray-200 !p-4 shadow-chart sm:!gap-6 sm:!p-6;
+		@apply flex w-full items-center gap-4 rounded-xl border border-gray-200 p-4 shadow-chart sm:gap-6 sm:p-6;
 	}
 
 	.total-balance-chart {
@@ -221,7 +255,7 @@
 	}
 
 	.plaidlink-default {
-		@apply flex !justify-start cursor-pointer gap-3 rounded-lg !bg-transparent flex-row;
+		@apply flex justify-start cursor-pointer gap-3 rounded-lg bg-transparent flex-row;
 	}
 
 	/* Auth */
@@ -324,7 +358,7 @@
 	}
 
 	.sidebar-link {
-		@apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start;
+		@apply flex gap-3 items-center justify-center py-1 md:p-3 2xl:p-4 rounded-lg min-xl:justify-start;
 	}
 
 	.sidebar-label {
