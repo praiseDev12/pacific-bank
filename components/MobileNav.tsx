@@ -10,7 +10,7 @@ import {
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
-} from '@/components/ui/Sheet';
+} from '@/components/ui/sheet';
 import Image from 'next/image';
 import Link from 'next/link';
 import { sidebarLinks } from '@/constants';
