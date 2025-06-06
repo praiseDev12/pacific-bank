@@ -20,8 +20,7 @@ import CustomInput from './CustomInput';
 import { AuthformSchema, cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { signUp } from '@/lib/actions/user.actions';
-import SignIn from '@/app/(auth)/sign-in/page';
+import { signIn, signUp } from '@/lib/actions/user.actions';
 
 const AuthForm = ({ type }: { type: string }) => {
 	const router = useRouter();
@@ -42,8 +41,8 @@ const AuthForm = ({ type }: { type: string }) => {
 			city: '',
 			state: '',
 			postalCode: '',
-			dob: '',
-			bvn: '',
+			dateOfBirth: '',
+			ssn: '',
 		},
 	});
 
@@ -54,24 +53,23 @@ const AuthForm = ({ type }: { type: string }) => {
 		try {
 			// Sign up with Appwrite & create a plaid token
 			if (type === 'sign-up') {
-				// const newUser = await signUp(data);
-				// setUser(newUser);
+				const newUser = await signUp(data);
+				setUser(newUser);
 			}
 
 			if (type === 'sign-in') {
-				// const responce = await SignIn({
-				// 	email: data.email,
-				// 	password: data.password,
-				// });
-				// if (responce) router.push('/');
+				const response = await signIn({
+					email: data.email,
+					password: data.password,
+				});
+
+				if (response) router.push('/');
 			}
 		} catch (error) {
 			console.log(error);
 		} finally {
 			setIsLoading(false);
 		}
-
-		setIsLoading(false);
 	};
 
 	return (
@@ -174,7 +172,7 @@ const AuthForm = ({ type }: { type: string }) => {
 										<div className='flex gap-8'>
 											<CustomInput
 												control={form.control}
-												name='dob'
+												name='dateOfBirth'
 												label='Date of Birth'
 												placeholder='YYYY-MM-DD'
 												type='text'
@@ -182,8 +180,8 @@ const AuthForm = ({ type }: { type: string }) => {
 
 											<CustomInput
 												control={form.control}
-												name='bvn'
-												label='BVN'
+												name='ssn'
+												label='SSN'
 												placeholder='Example: 1234'
 												type='text'
 											/>
@@ -256,23 +254,23 @@ const AuthForm = ({ type }: { type: string }) => {
 					</>
 				)}
 			</section>
-			<div
+			<section
 				className={cn(
-					'auth-form-div max-lg:hidden max-lg:opacity-0 absolute top-0 left-0  bg-blue-950'
+					'auth-form-div authbg max-lg:hidden max-lg:opacity-0 absolute top-0 left-0 bg-blue-950'
 				)}>
-				<div className='flex flex-col max-md:hidden h-screen items-center justify-center w-full gap-4'>
+				<div className='flex max-md:hidden h-screen shadow-2xl items-end justify-center w-full gap-4'>
 					<Image
 						src='/icons/logo.svg'
 						alt='logo'
-						width={300}
-						height={300}
+						width={90}
+						height={90}
 						className=''
 					/>
 					<p className='text-[50px] font-bold font-ibm-plex-serif text-shadow-blue-800 text-blue-400'>
 						Pacific Bank
 					</p>
 				</div>
-			</div>
+			</section>
 		</>
 	);
 };

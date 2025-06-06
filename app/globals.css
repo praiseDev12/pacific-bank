@@ -38,6 +38,11 @@
 	background: #7878a3;
 }
 
+.authbg {
+	background: url('/images/authbg.jpg');
+	background-size: cover;
+}
+
 @layer utilities {
 	.text-10 {
 		@apply text-[10px] leading-[14px];
@@ -271,11 +276,11 @@
 
 	/* Auth Form */
 	.auth-form {
-		@apply flex h-screen w-full max-w-[720px] min-lg:max-w-[60vw] flex-col gap-5 py-10 md:gap-8 z-10;
+		@apply flex h-screen w-full max-w-[720px] min-lg:max-w-[60vw] flex-col gap-5 py-10 md:gap-8 z-12;
 	}
 
 	.auth-form-div {
-		@apply flex h-screen min-lg:w-[40vw] flex-col justify-center gap-5 py-10 md:gap-8;
+		@apply flex h-screen min-lg:w-[40vw] flex-col justify-center gap-5 py-10 md:gap-8 z-10;
 	}
 
 	.form-item {
@@ -339,7 +344,7 @@
 	}
 
 	.footer_name {
-		@apply flex size-10 items-center justify-center rounded-full bg-gray-200 max-xl:hidden;
+		@apply flex size-10 items-center justify-center rounded-full bg-gray-600 max-xl:hidden;
 	}
 
 	.footer_email {

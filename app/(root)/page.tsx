@@ -1,15 +1,12 @@
 import HeaderBox from '@/components/HeaderBox';
 import RightSidebar from '@/components/RightSidebar';
 import TotalBalanceBox from '@/components/TotalBalanceBox';
+import { getLoggedInUser } from '@/lib/actions/user.actions';
 import React from 'react';
 
-const Home = () => {
-	const loggedIn = {
-		firstName: 'Praise',
-		lastName: 'Ezeofor',
-		email: 'abuchipraise@gmail.com',
-	};
-
+const Home = async () => {
+	const loggedIn = await getLoggedInUser();
+	console.log(loggedIn);
 	return (
 		<section className='no-scrollbar home'>
 			<div className='no-scrollbar home-content'>
@@ -17,7 +14,7 @@ const Home = () => {
 					<HeaderBox
 						type='greeting'
 						title='Welcome'
-						user={loggedIn?.firstName || 'Guest'}
+						user={loggedIn?.name || 'Guest'}
 						subtext='Access and manage your account and transactions efficiently'
 					/>
 
