@@ -32,6 +32,7 @@ const Footer = ({ user, type = 'desktop' }: FooterProps) => {
 
 			<div className='footer_image ml-1 group' onClick={handleLogout}>
 				<Image src='/icons/logout.svg' alt='logout' width={25} height={25} />
+
 				<ToolTip tip='Logout' />
 			</div>
 		</footer>

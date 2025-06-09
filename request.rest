@@ -1,0 +1,6 @@
+POST https://api.dwolla.com/customers/{}
+Content-Type: application/vnd.dwolla.v1.hal+json
+
+{
+  "status": "deactivated"
+}

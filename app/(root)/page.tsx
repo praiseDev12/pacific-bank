@@ -6,7 +6,7 @@ import React from 'react';
 
 const Home = async () => {
 	const loggedIn = await getLoggedInUser();
-	console.log(loggedIn);
+
 	return (
 		<section className='no-scrollbar home'>
 			<div className='no-scrollbar home-content'>
