@@ -110,7 +110,7 @@
 	}
 
 	.home-content {
-		@apply flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;
+		@apply flex max-w-[50vw] flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen overflow-x-hidden xl:overflow-y-scroll;
 	}
 
 	.home-header {
@@ -134,7 +134,7 @@
 	}
 
 	.recent-transactions {
-		@apply flex w-full flex-col gap-6;
+		@apply flex w-[40vw] flex-col gap-6;
 	}
 
 	.view-all-btn {
@@ -244,7 +244,7 @@
 	}
 
 	.banktab-item {
-		@apply gap-[18px] border-b-2 flex px-2 sm:px-4 py-2 transition-all;
+		@apply gap-[18px] flex px-2 sm:px-4 py-2 transition-all;
 	}
 
 	/* Mobile nav */
@@ -365,7 +365,7 @@
 
 	/* Sidebar */
 	.sidebar {
-		@apply sticky left-0 top-0 flex h-screen w-fit flex-col  justify-between border-r border-gray-200 bg-white pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
+		@apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-200 bg-white pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
 	}
 
 	.sidebar-logo {

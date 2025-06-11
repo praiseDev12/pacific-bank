@@ -9,10 +9,10 @@ import {
 	TransferType,
 } from 'plaid';
 
-import { plaidClient } from '../plaid.config';
+import { plaidClient } from '../plaid';
 import { parseStringify } from '../utils';
 
-import { getTransactionsByBankId } from './transaction.actions';
+import { getTransactionsByBankId } from './transactions.actions';
 import { getBanks, getBank } from './user.actions';
 
 // Get multiple bank accounts
@@ -58,6 +58,44 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
 		}, 0);
 
 		return parseStringify({ data: accounts, totalBanks, totalCurrentBalance });
+	} catch (error) {
+		console.error('An error occurred while getting the accounts:', error);
+	}
+};
+
+// Get transactions
+export const getTransactions = async ({
+	accessToken,
+}: getTransactionsProps) => {
+	let hasMore = true;
+	let transactions: any = [];
+
+	try {
+		// Iterate through each page of new transaction updates for item
+		while (hasMore) {
+			const response = await plaidClient.transactionsSync({
+				access_token: accessToken,
+			});
+
+			const data = response.data;
+
+			transactions = response.data.added.map((transaction) => ({
+				id: transaction.transaction_id,
+				name: transaction.name,
+				paymentChannel: transaction.payment_channel,
+				type: transaction.payment_channel,
+				accountId: transaction.account_id,
+				amount: transaction.amount,
+				pending: transaction.pending,
+				category: transaction.category ? transaction.category[0] : '',
+				date: transaction.date,
+				image: transaction.logo_url,
+			}));
+
+			hasMore = data.has_more;
+		}
+
+		return parseStringify(transactions);
 	} catch (error) {
 		console.error('An error occurred while getting the accounts:', error);
 	}
@@ -141,44 +179,6 @@ export const getInstitution = async ({
 		const intitution = institutionResponse.data.institution;
 
 		return parseStringify(intitution);
-	} catch (error) {
-		console.error('An error occurred while getting the accounts:', error);
-	}
-};
-
-// Get transactions
-export const getTransactions = async ({
-	accessToken,
-}: getTransactionsProps) => {
-	let hasMore = true;
-	let transactions: any = [];
-
-	try {
-		// Iterate through each page of new transaction updates for item
-		while (hasMore) {
-			const response = await plaidClient.transactionsSync({
-				access_token: accessToken,
-			});
-
-			const data = response.data;
-
-			transactions = response.data.added.map((transaction) => ({
-				id: transaction.transaction_id,
-				name: transaction.name,
-				paymentChannel: transaction.payment_channel,
-				type: transaction.payment_channel,
-				accountId: transaction.account_id,
-				amount: transaction.amount,
-				pending: transaction.pending,
-				category: transaction.category ? transaction.category[0] : '',
-				date: transaction.date,
-				image: transaction.logo_url,
-			}));
-
-			hasMore = data.has_more;
-		}
-
-		return parseStringify(transactions);
 	} catch (error) {
 		console.error('An error occurred while getting the accounts:', error);
 	}
